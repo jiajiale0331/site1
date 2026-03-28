@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Gradient Cube</title>
+    <style>
+        /* 容器：开启3D空间，设置透视 */
+        .cube-container {
+            width: 300px;
+            height: 300px;
+            margin: 100px auto;
+            perspective: 1000px; /* 透视效果，模拟人眼到立方体的距离 */
+        }
+
+        /* 立方体主体：设置3D变换基点，开启3D变换 */
+        .cube {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d; /* 保留子元素的3D效果 */
+            animation: rotateCube 10s infinite linear; /* 立方体旋转动画（可选） */
+        }
+
+        /* 立方体的每个面：基础样式 */
+        .cube-face {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border: 1px solid rgba(0,0,0,0.1);
+            /* 渐变背景：每个面用不同的linear-gradient */
+        }
+
+        /* 正面：红色到橙色渐变 */
+        .front {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            transform: translateZ(150px); /* 向前平移150px（立方体边长的一半） */
+        }
+
+        /* 背面：蓝色到紫色渐变 */
+        .back {
+            background: linear-gradient(45deg, #4ecdc4, #556270);
+            transform: rotateY(180deg) translateZ(150px);
+        }
+
+        /* 左侧：绿色到青色渐变 */
+        .left {
+            background: linear-gradient(45deg, #70e1f5, #ffd194);
+            transform: rotateY(-90deg) translateZ(150px);
+        }
+
+        /* 右侧：黄色到粉色渐变 */
+        .right {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            transform: rotateY(90deg) translateZ(150px);
+        }
+
+        /* 顶部：紫色到靛蓝渐变 */
+        .top {
+            background: linear-gradient(45deg, #9d50bb, #6e48aa);
+            transform: rotateX(90deg) translateZ(150px);
+        }
+
+        /* 底部：橙色到棕色渐变 */
+        .bottom {
+            background: linear-gradient(45deg, #fbb034, #ffdd00);
+            transform: rotateX(-90deg) translateZ(150px);
+        }
+
+        /* 立方体旋转动画（可选，增强视觉效果） */
+        @keyframes rotateCube {
+            0% { transform: rotateX(0) rotateY(0); }
+            100% { transform: rotateX(360deg) rotateY(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="cube-container">
+        <div class="cube">
+            <!-- 立方体的6个面 -->
+            <div class="cube-face front"></div>
+            <div class="cube-face back"></div>
+            <div class="cube-face left"></div>
+            <div class="cube-face right"></div>
+            <div class="cube-face top"></div>
+            <div class="cube-face bottom"></div>
+        </div>
+    </div>
+</body>
+</html>
